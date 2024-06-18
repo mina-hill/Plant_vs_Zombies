@@ -31,10 +31,10 @@ public:
 
         // Choose zombie type based on random number
         if (randomZombie == 0) {
-            zArray[zCount - 1] = new simpleZ(1110, 130 + pRow * 109);
+            zArray[zCount - 1] = new simpleZ(1110, 7 + pRow * 109);
         }
         else {
-            zArray[zCount - 1] = new bucketZ(1110, 130 + pRow * 109);
+            zArray[zCount - 1] = new bucketZ(1110, 11 + pRow * 109);
         }
 
 
@@ -56,12 +56,14 @@ public:
         for (int i = 0; i < zCount; i++)
         {
             zArray[i]->animation();
-            zArray[i]->sprite.setPosition(zArray[i]->positionZ.x, zArray[i]->positionZ.y);
-            //rectangle.setPosition(188 + (92 * i), 130 + (109 * i)); 
+           
+            
+            zArray[i]->sprite.setPosition(zArray[i]->positionZ.x, zArray[i]->positionZ.y-20);
+            rectangle.setPosition(zArray[i]->positionZ.x, zArray[i]->positionZ.y); 
+            zArray[i]->sprite.setScale(0.9f, 0.9f);
             window.draw(zArray[i]->sprite);
-            //window.draw(rectangle);
-            zArray[i]->sprite.setPosition(zArray[i]->positionZ.x, zArray[i]->positionZ.y);
-            window.draw(zArray[i]->sprite);
+            window.draw(rectangle);
+         
 
         }
 
@@ -90,6 +92,30 @@ public:
        
         return true;
 
+    }
+
+    void deleteZombie()
+    {
+
+        //this function need some adjustments yet
+        if(zArray)
+        {
+
+            for (int i = 0; i < zCount; i++)
+            {
+                if (zArray[i]->life <= 0)
+                {
+                    delete zArray[i];
+                    zCount--;
+                    for (int j = i; j < zCount; j++)
+                    {
+                        zArray[j] = zArray[j + 1];
+                    }
+                  
+
+                }
+            }
+        }
     }
 
 };
