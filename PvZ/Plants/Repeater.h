@@ -1,23 +1,19 @@
 #pragma once
-#pragma once
 #include "iostream"
 #include "Plant.h"
 #include "../coordinates.h"
-#include "../Elements/SunFactory.h"
+#include "../Elements/Pea.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <ctime>
-using namespace sf;
-using namespace std;
 
-class SunFlower : public Plant {
+class Repeater :public Plant {
+private:
+    //PeaNode* head = nullptr;
 public:
-    sf::Clock makeSunClock;
-    SunFactory& sunFactory;
-public:
-    SunFlower(int c, int r, SunFactory& sf) : Plant(c, r), sunFactory(sf)
+    Repeater(int r, int c) : Plant(c, r)
     {
-        if (!plantImage.loadFromFile("../SFML/Images/Spritesheets/sunflower.png")) {
+        if (!plantImage.loadFromFile("../SFML/Images/Spritesheets/repeater.png")) {
             // Error handling: unable to load image
             std::cerr << "Failed to load frame sheet image!" << std::endl;
             // You may add additional error handling or throw an exception here
@@ -25,14 +21,15 @@ public:
         plantTexture.loadFromImage(plantImage);
         plantSprite.setTexture(plantTexture);
         plantSprite.setTextureRect(plantSourceRect);
-        plantSprite.setPosition(coord.x, coord.y);
-       // plantSprite.setOrigin(0, 0);
+        plantSprite.setPosition(coord.y, coord.x);
+        plantSprite.setOrigin(0, 0);
 
         currentFrame = 0;
-        numFrames = 18;
+        numFrames = 15;
         frameDuration = 80.0f; // adjust as needed
         frameClock.restart();
-        costPlant = 50;
+        //shootClock.restart();
+        costPlant = 200;
     }
     virtual void displayAndUpdateAnimation() override {
         //std::cout << "Elapsed time: " << frameClock.getElapsedTime().asMicroseconds() << " seconds" << std::endl;
@@ -41,25 +38,18 @@ public:
         if (frameClock.getElapsedTime().asMilliseconds() >= frameDuration) //(frameClock.getElapsedTime().asMicroseconds() >= frameDuration) {
         {
             currentFrame = (currentFrame + 1) % numFrames;
-            plantSourceRect.left = currentFrame * 91;
+            plantSourceRect.left = currentFrame * 92;
             plantSprite.setTextureRect(plantSourceRect);
             frameClock.restart();
         }
     }
-
-    void generateSuns()
+    ~Repeater()
     {
-        if (makeSunClock.getElapsedTime().asSeconds() >= 10.0)
-        {
-            // Calculate position relative to sunflower's position
-            coordinats sunPosition;
-            sunPosition.x = coord.x + 50; // Example: 50 pixels right of sunflower
-            sunPosition.y = coord.y - 20; // Example: 20 pixels above sunflower
-
-            // Create sun at calculated position
-            sunFactory.createSun(sunPosition);
-
-            makeSunClock.restart(); // Reset the create clock
-        }
+        /*PeaNode* current = head;
+        while (current != nullptr) {
+            PeaNode* toDelete = current;
+            current = current->next;
+            delete toDelete;
+        }*/
     }
 };

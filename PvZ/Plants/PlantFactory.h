@@ -4,12 +4,12 @@
 #include "Plant.h"
 #include "PeaShooter.h"
 #include "Sunflower.h"
+#include "SnowPea.h"
+#include "Repeater.h"
 #include <SFML/Graphics.hpp>
 #include "../Elements/SunFactory.h"
 #include <iostream>
 #include <ctime>
-using namespace std;
-using namespace sf;
 
 class PlantFactory {
 public:
@@ -47,6 +47,12 @@ public:
             break;
         case 2:
             plants[gridY][gridX] = new PeaShooter(gridX * 92 + 280, gridY * 110 + 130);
+            break;
+        case 3:
+            plants[gridY][gridX] = new SnowPea(gridX * 92 + 280, gridY * 110 + 130);
+            break;
+        case 4:
+            plants[gridY][gridX] = new Repeater(gridX * 92 + 280, gridY * 110 + 130);
             break;
         default:
             return;

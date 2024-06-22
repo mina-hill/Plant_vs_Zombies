@@ -4,6 +4,8 @@
 #include "ShopPanel.h"
 #include "../Elements/PeaShooterPanel.h"
 #include "../Elements/SunFlowerPanel.h"
+#include "../Elements/SnowPeaPanel.h"
+#include "../Elements/RepeaterPanel.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
@@ -56,6 +58,8 @@ public:
 		panels = new shopPanel * [n];
 		panels[0] = new SunFlowerPanel();
 		panels[1] = new PeaShooterPanel();
+		panels[2] = new SnowPeaPanel();
+		panels[3] = new RepeaterPanel();
 	}
 	int clickPlants(coordinats mouse)
 	{
@@ -66,7 +70,7 @@ public:
 			
 			if (panels[i]->isClicked(mouse))
 			{
-				cout << "Clicking Plants" << endl;
+				std::cout << "Clicking Plants" << std::endl;
 				id = i;
 				return id;
 			}

@@ -13,13 +13,13 @@
 using namespace sf;
 using namespace std;
 
-class Level1 : public Levels {
+class Level2 : public Levels {
 private:
 
 public:
-	Level1()
+	Level2()
 	{
-		myShop.makePanels(2);
+		myShop.makePanels(4);
 	}
 	virtual void update(sf::Event& event) override
 	{

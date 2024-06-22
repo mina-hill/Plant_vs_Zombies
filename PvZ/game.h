@@ -206,7 +206,8 @@ public:
 				levelNum = nullptr;
 			}
 			menuState = newState;  // Update the state
-			if (menuState == MenuState::LevelSelection) {
+			if (menuState == MenuState::LevelSelection) 
+			{
 				levelNum = new Level1();  // Only instantiate the new level when needed
 			}
 			// Additional state initialization

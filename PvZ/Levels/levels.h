@@ -3,14 +3,14 @@
 #define LEVEL_H
 
 #include <iostream>
-#include "Plants/PlantFactory.h"
-#include "Plants/PeaShooter.h"
-#include "Elements/Suns.h"
-#include "Elements/SunFactory.h"
-#include "Elements/Shop.h"
-#include "Grid.h"
+#include "../Plants/PlantFactory.h"
+#include "../Plants/PeaShooter.h"
+#include "../Elements/Suns.h"
+#include "../Elements/SunFactory.h"
+#include "../Elements/Shop.h"
+#include "../Grid.h"
 #include <SFML/Graphics.hpp>
-#include "coordinates.h"
+#include "../coordinates.h"
 #include <iostream>
 #include <ctime>
 #include "../Plants/Plant.h"
@@ -84,8 +84,6 @@ public:
 		pFactory.createPlant(gridX, gridY, plantId);
 		//pFactory.accessUniqueBehaviors(sFactory);
 	}
-
-
 	void createZombie(Clock& zGeneratClock)
 	{
 		static int j = 0;
